@@ -2,7 +2,6 @@
 -- When using Maybe a value should have type 'Just' or 'Nothing' and the 'Just' is missing in the else
 -- The last line where x=x is redundant and does nothing
 
-
 -- Problem 1.2:
 
 allAnswers :: (a -> Maybe b) -> [a] -> Maybe [b]
@@ -10,7 +9,6 @@ allAnswers f [] = Just []
 allAnswers f xs = sequence (map f xs)
 
 -- Problem 1.3:
-
 allAnswers' f[] = Just []
 allAnswers' f(x:xs) = let fun = f x
     in if (fun == Nothing) then Nothing

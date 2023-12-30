@@ -21,7 +21,7 @@ myBigOak = BBranch 14 (BLeaf 13) (BLeaf 17)
 
 -- Quicksort
 
-qsort :: (Ord a) => [a] -> [a]
+qsort :: Ord a => [a] -> [a]
 
 qsort [] = []
 qsort (x:xs) = small ++ [x] ++ big
