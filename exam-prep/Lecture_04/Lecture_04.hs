@@ -38,3 +38,19 @@ flop xs = [(snd x, fst x) | x <- reverse xs]
 
 {-b-}
 dupli::[a] -> [a]
+dupli [] = []
+dupli (x:xs) = x:x:dupli xs
+
+{-c-}
+isperfect:: Int -> [Int]
+isperfect a =  [x | x <- [1..a-1], a `mod` x==0]
+
+{-d-}
+bigheadnumber:: [Int] -> Int
+bigheadnumber (x:xs) = length (filter(> x) xs)
+bigheadlist:: [Int] -> [Int]
+bigheadlist (x:xs) = [y | y <- xs, y > x]
+
+{-e-}
+sums m n = [x+y | x <- [1..m], y <- [1..n]]
+sums' m n = concat[[x+y | y <- [1..n]] | x <- [1..m]]
