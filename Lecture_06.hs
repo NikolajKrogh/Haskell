@@ -82,6 +82,7 @@ The function map can be applied to any function, so we can write map map. What i
 map map? Figure this out without asking the Haskell interpreter – try to justify your answer and
 only then ask the interpreter.
 -}
-map map:: (a -> b) -> [[a]] -> [[b]]
+mapmap:: [a -> b] -> [[a] -> [b]]
+mapmap = map map
 
 
