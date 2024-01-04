@@ -46,4 +46,21 @@ partitionfoldr k xs = foldr (\x (yes,no) ->
         then (x:yes,no) 
     else (yes,x:no)) ([],[]) xs
 
+
 {-b-}
+filterusingfoldr :: (a -> Bool) -> [a] -> [a]
+filterusingfoldr predicate xs = foldr (\x acc -> if predicate x then x : acc else acc) [] xs
+
+
+{-c-}
+remove:: String -> String -> String
+remove [] ys = ys
+remove xs ys = filter (`notElem` xs) ys
+
+removefoldr:: String -> String -> String
+removefoldr xs ys = foldr (\y acc -> if y `elem` xs then acc else y:acc) [] ys
+
+{-d-}
+min2::Ord a => [a] -> a
+min2 (x:xs) = foldr min x xs
+--not a high order function: min2 xs = minimum xs
