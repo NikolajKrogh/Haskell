@@ -63,7 +63,7 @@ instance Applicative W where
   --(<*>) :: W (a -> b) -> W a -> W b
   Bingo f <*> Bingo x = Bingo (f x)
 instance Monad W where
-  return x = Bingo x
+  --return x = Bingo x
   Bingo x >>= f = f x
 
 wrapadd :: Num b =>b -> W b -> W b
