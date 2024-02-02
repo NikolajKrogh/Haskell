@@ -1,3 +1,0 @@
--- Full name: Nikolaj Kofod Krogh
--- AAU mail: nkrogh20@student.aau.dk
--- Study number: 20205320
