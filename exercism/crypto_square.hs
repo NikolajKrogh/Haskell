@@ -41,3 +41,43 @@ encode :: String -> String
 encode xs
     | (rSize $ normalizeInput xs) == (1, 1) = normalizeInput xs
     | otherwise = encText $ encRect $ toRect $ normalizeInput xs
+
+
+
+{-
+-- | Normalize a string and only keeping digits and alphas.
+-- Example:
+-- >>> normalize "this is a test!"
+-- WAS "thisisatest"
+normalize :: String -> String
+normalize xs = map toLower (filter (\char -> isAlpha char || isDigit char) xs)
+
+-- | Calculate the number of columns for the encoding grid based on the length of the input string.
+calculateColumns :: Int -> Int
+calculateColumns len = ceilingSqrt len
+  where
+    ceilingSqrt x = let y = sqrt (fromIntegral x :: Double) in if y == fromIntegral (floor y) then floor y else floor y + 1
+
+-- | Calculate the number of rows for the encoding grid based on the number of columns and the length of the input string.
+calculateRows :: Int -> Int -> Int
+calculateRows c len = if c * (c - 1) >= len then c - 1 else c
+
+-- | The 'encoding' function implements the encoding part of the square code cipher.
+encoding :: String -> Int -> Int -> String
+encoding xs c r = concat [[(xs ++ repeat ' ') !! (i * c + j) | i <- [0 .. r - 1], i * c + j < len] ++ " " | j <- [0 .. c - 1]]
+  where
+    len = length xs
+
+-- | Encode a string using the crypto square algorithm.
+-- It takes a string 'xs' and returns the encoded string
+-- Example:
+-- >>> encode "this is a test"
+-- "tie hss iat st"
+encode :: String -> String
+encode xs = encoding normalized c r
+  where
+    normalized = normalize xs
+    len = length normalized
+    c = calculateColumns len
+    r = calculateRows c len
+-}
