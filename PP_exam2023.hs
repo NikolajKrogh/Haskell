@@ -35,7 +35,7 @@ allrotates (x : y : xs) = l1 : l2
 -- PROBLEM 2
 
 -- 2.1
-data Tree a = Leaf a | PartialBranch (Tree a) (Tree a) | Branch a (Tree a) (Tree a) deriving (Show)
+{-data Tree a = Leaf a | PartialBranch (Tree a) (Tree a) | Branch a (Tree a) (Tree a) deriving (Show)
 
 t1 = PartialBranch (PartialBranch (Leaf 17) (Leaf 484000)) (Leaf 1964)
 
@@ -52,7 +52,16 @@ isfullWith (PartialBranch _ t1) Partial = False
 isfullWith _ _ = False
 
 isfull t = isfullWith t Full
+-}
+data Tree a = Label a (Tree a) (Tree a) | Unlabel (Tree a) (Tree a) | Leaf a
 
+t1 = Label "goat" (Unlabel (Leaf "pig") (Leaf "cow")) (Leaf "sheep") -- Should return False
+
+t2 = Label "goat" (Label "horse" (Leaf "pig") (Leaf "cow")) (Leaf "sheep") -- Should return true
+
+isfull (Leaf _) = True
+isfull (Unlabel _ _) = False
+isfull (Label _ l r) = isfull l && isfull r
 -- 2.3
 
 -- PROBLEM 3
@@ -112,7 +121,7 @@ func3 f x y = f (x True y)
 -- This type of polymorphism allows a function to have different implementations depending on the types of its arguments.
 
 -- func4 :: (Num a, Enum a) => [a]
-func4 = [x | x <- [1 .. 42], x + x == 42 || toEnum x]
+-- ghci> :t [1..3]
 
 -- PROBLEM 6
 
@@ -125,6 +134,7 @@ naturals = generate natural
   where
     generate natural = natural : generate (1 + natural)
 
+naturals2 n = n : naturals2 (n+1)
 -- 6.2
 
 -- map :: (a -> b) -> [a] -> [b]

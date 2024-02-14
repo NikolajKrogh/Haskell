@@ -12,7 +12,7 @@ toDigits = map (toInteger . digitToInt) . filter isDigit
 --
 -- This function takes a list of integers and doubles every other element, starting from the right.
 -- It does this by using the 'zipWith' function to pair each element with its index, and then using the 'mod' function to determine if the index is odd.
---  If the index is odd, the element is doubled; otherwise, it remains unchanged.
+-- If the index is odd, the element is doubled; otherwise, it remains unchanged.
 -- The resulting list represents the doubled elements.
 doubleEveryOtherFromRight :: [Integer] -> [Integer]
 doubleEveryOtherFromRight = reverse . doubleEveryOther . reverse
