@@ -1,20 +1,22 @@
--- | Given a target value and a list of coin denominations, `findFewestCoins` attempts to find the fewest number of coins needed to make up the target value.
--- If a valid combination of coins is found, it returns `Just` the list of coins.
--- If no valid combination is found, it returns `Nothing`.
-findFewestCoins :: Integer -> [Integer] -> Maybe [Integer]
-findFewestCoins target coins
-    | target < 0 = Nothing
-    | target == 0 = Just []
-    | otherwise = findFewestCoins' target coins
+import Data.Maybe (listToMaybe)
 
--- | Helper function for `findFewestCoins` that recursively finds the fewest number of coins needed to make up the target value.
-findFewestCoins' :: Integer -> [Integer] -> Maybe [Integer]
-findFewestCoins' target coins = case validOptions of
-    [] -> Nothing
-    options -> Just (reverse (minimumByLength options))
-    where
-    validOptions = [coin:rest | coin <- coins, coin <= target, Just rest <- [findFewestCoins (target - coin) coins]]
+type Target = Integer
+type Coins = [Integer]
 
--- | Given a list of lists, `minimumByLength` returns the list with the minimum length.
-minimumByLength :: [[Integer]] -> [Integer]
-minimumByLength = foldr1 (\x acc -> if length x < length acc then x else acc)
+findFewestCoins :: Target -> Coins -> Maybe Coins
+findFewestCoins target coins = listToMaybe $ findFor target coins
+
+findFor :: Target -> Coins -> [Coins]
+findFor _ [] = []
+findFor target coins@(c : cs)
+  | target < 0 = []
+  | target == 0 = [[]]
+  | otherwise = findFor target cs <> ((c :) <$> findFor (target - c) coins)
+
+  {-
+  coins@(c : cs) is an as-pattern. 
+  This pattern matches a list of coins and binds c to the head of the list (the first coin)
+  and cs to the tail of the list (all the other coins). At the same time, coins is bound to the whole list. 
+  This allows the code to use coins to refer to the whole list and c and cs to refer to the first coin
+  and the remaining coins, respectively.
+  -}
