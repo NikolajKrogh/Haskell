@@ -250,3 +250,42 @@ findMinimum (x:xs) = min x (findMinimum xs)
 -- Calculate the sum of even-indexed elements in a list
 sumOfEvenIndices :: Num a => [a] -> a
 sumOfEvenIndices xs = sum (map snd (filter (\(i, _) -> even i) (zip [0..] xs)))
+
+-- Returns the sum from a given number down to 0
+sumdown:: Int -> Int 
+sumdown 0 = 0
+sumdown x = x + sumdown (x-1) 
+
+-- Returns the exponentiation of a number
+expo :: Int -> Int -> Int
+expo _ 0 = 1
+expo x y = x * expo x (y-1)
+
+-- Calculating the greatest common divisor of two numbers
+euclid :: Int -> Int -> Int
+euclid x y
+  | x == y = x
+  | x > y = euclid (x-y) y
+  | x < y = euclid x (y-x)
+
+-- Returns the length of a list
+length' :: [a] -> Int
+length' [] = 0
+length' (_:xs) = 1 + length' xs
+
+-- Merge two sorted lists into a single sorted list
+merge :: Ord a => [a] -> [a] -> [a]
+merge [] ys = ys
+merge xs [] = xs
+merge (x:xs) (y:ys) = if x <= y then x : merge xs (y:ys) else y : merge (x:xs) ys
+
+-- Split a list into two halves (first half is longer if the length is odd)
+halve :: [a] -> ([a], [a])
+halve xs = splitAt (length xs `div` 2) xs
+
+-- Merge sort
+mergeSort :: Ord a => [a] -> [a]
+mergeSort [] = []
+mergeSort [x] = [x]
+mergeSort xs = merge (mergeSort left) (mergeSort right)
+  where (left, right) = halve xs
