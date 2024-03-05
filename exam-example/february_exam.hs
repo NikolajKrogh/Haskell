@@ -93,8 +93,10 @@ func4 x y = []
 -- PROBLEM 6
 
 -- 6.1 
-squares [] = []
-squares (x:xs) = x*x : squares xs 
+--squares [] = []
+--squares (x:xs) = x*x : squares xs 
+squaresList n = [n^2] ++ (squaresList (n+1))
+squares = squaresList 1 
 
 -- 6.2
 squares' = map (\x -> x*x) [1..]
