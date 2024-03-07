@@ -132,6 +132,16 @@ isLower c = c >= 'a' && c <= 'z'
 isUpper :: Char -> Bool
 isUpper c = c >= 'A' && c <= 'Z'
 
+toLower :: Char -> Char
+toLower c
+  | isUpper c = toEnum (fromEnum c + 32)
+  | otherwise = c
+
+toUpper :: Char -> Char
+toUpper c
+  | isLower c = toEnum (fromEnum c - 32)
+  | otherwise = c
+
 -- Logical Operations
 
 myNot :: Bool -> Bool
