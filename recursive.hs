@@ -18,12 +18,12 @@ isEven n = isEven (n - 2)
 -- Calculate the sum of squares up to a given positive integer
 sumOfSquares :: Integer -> Integer
 sumOfSquares 0 = 0
-sumOfSquares n = n^2 + sumOfSquares (n - 1)
+sumOfSquares n = n ^ 2 + sumOfSquares (n - 1)
 
 -- Reverse a list
 reverseList :: [a] -> [a]
 reverseList [] = []
-reverseList (x:xs) = reverseList xs ++ [x]
+reverseList (x : xs) = reverseList xs ++ [x]
 
 -- Compute the nth triangular number
 triangularNumber :: Integer -> Integer
@@ -34,7 +34,7 @@ triangularNumber n = n + triangularNumber (n - 1)
 isPalindrome :: Eq a => [a] -> Bool
 isPalindrome [] = True
 isPalindrome [_] = True
-isPalindrome (x:xs) = x == last xs && isPalindrome (init xs)
+isPalindrome (x : xs) = x == last xs && isPalindrome (init xs)
 
 -- Calculate the greatest common divisor (GCD) of two positive integers
 gcd' :: Integer -> Integer -> Integer
@@ -49,13 +49,13 @@ sumOfNaturals n = n + sumOfNaturals (n - 1)
 -- Compute the length of a list
 listLength :: [a] -> Integer
 listLength [] = 0
-listLength (_:xs) = 1 + listLength xs
+listLength (_ : xs) = 1 + listLength xs
 
 -- Check if a given string is a palindrome
 isStringPalindrome :: String -> Bool
 isStringPalindrome "" = True
 isStringPalindrome [_] = True
-isStringPalindrome (x:xs) = x == last xs && isStringPalindrome (init xs)
+isStringPalindrome (x : xs) = x == last xs && isStringPalindrome (init xs)
 
 -- Calculate the power of a number using exponentiation
 power :: Integer -> Integer -> Integer
@@ -65,22 +65,22 @@ power x n = x * power x (n - 1)
 -- Concatenate two lists
 concatLists :: [a] -> [a] -> [a]
 concatLists [] ys = ys
-concatLists (x:xs) ys = x : concatLists xs ys
+concatLists (x : xs) ys = x : concatLists xs ys
 
 -- Compute the product of elements in a list
 productOfList :: Num a => [a] -> a
 productOfList [] = 1
-productOfList (x:xs) = x * productOfList xs
+productOfList (x : xs) = x * productOfList xs
 
 -- Generate a list of the first n prime numbers
 generatePrimes :: Integer -> [Integer]
-generatePrimes n = take (fromIntegral n) (filter isPrime [2..])
+generatePrimes n = take (fromIntegral n) (filter isPrime [2 ..])
 
 -- Check if a number is prime
 isPrime :: Integer -> Bool
 isPrime n
   | n <= 1 = False
-  | otherwise = not (any (\x -> n `mod` x == 0) [2..intSqrt n])
+  | otherwise = not (any (\x -> n `mod` x == 0) [2 .. intSqrt n])
 
 -- Integer square root (floor)
 intSqrt :: Integer -> Integer
@@ -95,7 +95,7 @@ collatzSequence n x = x : collatzSequence (n - 1) (if even x then x `div` 2 else
 sumOfEvenSquares :: Integer -> Integer
 sumOfEvenSquares 0 = 0
 sumOfEvenSquares n
-  | even n = n^2 + sumOfEvenSquares (n - 2)
+  | even n = n ^ 2 + sumOfEvenSquares (n - 2)
   | otherwise = sumOfEvenSquares (n - 1)
 
 -- Compute the nth triangular number using tail recursion
@@ -105,67 +105,67 @@ triangularNumberTail n acc = triangularNumberTail (n - 1) (acc + n)
 
 -- Generate a list of Fibonacci numbers up to n
 fibonacciList :: Integer -> [Integer]
-fibonacciList n = takeWhile (<= n) (map fibonacci [0..])
+fibonacciList n = takeWhile (<= n) (map fibonacci [0 ..])
 
 -- Check if a list is sorted in ascending order
 isSorted :: Ord a => [a] -> Bool
 isSorted [] = True
 isSorted [_] = True
-isSorted (x1:x2:xs) = x1 <= x2 && isSorted (x2:xs)
+isSorted (x1 : x2 : xs) = x1 <= x2 && isSorted (x2 : xs)
 
 -- Calculate the greatest common divisor (GCD) of a list of integers
 gcdList :: [Integer] -> Integer
-gcdList [] = 0  -- GCD is undefined for an empty list, handle this case accordingly
+gcdList [] = 0 -- GCD is undefined for an empty list, handle this case accordingly
 gcdList [x] = x
-gcdList (x:xs) = gcd x (gcdList xs)
+gcdList (x : xs) = gcd x (gcdList xs)
 
 -- Double each element in a list
 doubleList :: [Integer] -> [Integer]
 doubleList [] = []
-doubleList (x:xs) = 2 * x : doubleList xs
+doubleList (x : xs) = 2 * x : doubleList xs
 
 -- Remove all occurrences of a specific element from a list
 removeElement :: Eq a => a -> [a] -> [a]
 removeElement _ [] = []
-removeElement e (x:xs)
+removeElement e (x : xs)
   | e == x = removeElement e xs
   | otherwise = x : removeElement e xs
 
 -- Compute the sum of even Fibonacci numbers up to n
 sumOfEvenFibonacci :: Integer -> Integer
-sumOfEvenFibonacci n = sum (filter even (takeWhile (<= n) (map fibonacci [1..])))
+sumOfEvenFibonacci n = sum (filter even (takeWhile (<= n) (map fibonacci [1 ..])))
 
 -- Find the maximum element in a list
 maximumList :: Ord a => [a] -> a
 maximumList [x] = x
-maximumList (x:xs) = max x (maximumList xs)
+maximumList (x : xs) = max x (maximumList xs)
 
 -- Merge two sorted lists into a single sorted list
 mergeSortedLists :: Ord a => [a] -> [a] -> [a]
 mergeSortedLists xs [] = xs
 mergeSortedLists [] ys = ys
-mergeSortedLists (x:xs) (y:ys)
-  | x <= y = x : mergeSortedLists xs (y:ys)
-  | otherwise = y : mergeSortedLists (x:xs) ys
+mergeSortedLists (x : xs) (y : ys)
+  | x <= y = x : mergeSortedLists xs (y : ys)
+  | otherwise = y : mergeSortedLists (x : xs) ys
 
 -- Calculate the product of the first n prime numbers
 productOfPrimes :: Integer -> Integer
-productOfPrimes n = product (take (fromIntegral n) (filter isPrime [2..]))
+productOfPrimes n = product (take (fromIntegral n) (filter isPrime [2 ..]))
 
 -- Check if a list contains consecutive duplicates
 hasConsecutiveDuplicates :: Eq a => [a] -> Bool
 hasConsecutiveDuplicates [] = False
 hasConsecutiveDuplicates [_] = False
-hasConsecutiveDuplicates (x1:x2:xs) = x1 == x2 || hasConsecutiveDuplicates (x2:xs)
+hasConsecutiveDuplicates (x1 : x2 : xs) = x1 == x2 || hasConsecutiveDuplicates (x2 : xs)
 
 -- Generate a list of powers of 2 up to n
 powersOf2 :: Integer -> [Integer]
-powersOf2 n = map (2^) [0..n]
+powersOf2 n = map (2 ^) [0 .. n]
 
 -- Flatten a list of lists into a single list
 flatten :: [[a]] -> [a]
 flatten [] = []
-flatten (xs:xss) = xs ++ flatten xss
+flatten (xs : xss) = xs ++ flatten xss
 
 -- Calculate the sum of digits of a positive integer
 sumOfDigits :: Integer -> Integer
@@ -176,16 +176,16 @@ sumOfDigits n
 -- Determine if a list is a subset of another list
 isSubset :: Eq a => [a] -> [a] -> Bool
 isSubset [] _ = True
-isSubset (x:xs) ys = elem x ys && isSubset xs ys
+isSubset (x : xs) ys = elem x ys && isSubset xs ys
 
 -- Count occurrences of a specific element in a list
 countOccurrences :: Eq a => a -> [a] -> Integer
 countOccurrences _ [] = 0
-countOccurrences x (y:ys) = (if x == y then 1 else 0) + countOccurrences x ys
+countOccurrences x (y : ys) = (if x == y then 1 else 0) + countOccurrences x ys
 
 -- Generate a list of the first n perfect squares
 perfectSquares :: Integer -> [Integer]
-perfectSquares n = take (fromIntegral n) (map (\x -> x * x) [1..])
+perfectSquares n = take (fromIntegral n) (map (\x -> x * x) [1 ..])
 
 -- Compute the nth power of a number using exponentiation
 nthPower :: Integer -> Integer -> Integer
@@ -196,13 +196,13 @@ nthPower x n = x * nthPower x (n - 1)
 mergeSorted :: Ord a => [a] -> [a] -> [a]
 mergeSorted xs [] = xs
 mergeSorted [] ys = ys
-mergeSorted (x:xs) (y:ys)
-  | x <= y    = x : mergeSorted xs (y:ys)
-  | otherwise = y : mergeSorted (x:xs) ys
+mergeSorted (x : xs) (y : ys)
+  | x <= y = x : mergeSorted xs (y : ys)
+  | otherwise = y : mergeSorted (x : xs) ys
 
 -- Generate a list of the first n triangular numbers
 triangularNumbers :: Integer -> [Integer]
-triangularNumbers n = take (fromIntegral n) (scanl1 (+) [1..])
+triangularNumbers n = take (fromIntegral n) (scanl1 (+) [1 ..])
 
 -- Reverse the order of words in a string
 reverseWords :: String -> String
@@ -211,17 +211,17 @@ reverseWords = unwords . reverse . words
 -- Replace all occurrences of a character in a string
 replaceChar :: Char -> Char -> String -> String
 replaceChar _ _ [] = []
-replaceChar oldChar newChar (x:xs)
+replaceChar oldChar newChar (x : xs)
   | x == oldChar = newChar : replaceChar oldChar newChar xs
-  | otherwise    = x : replaceChar oldChar newChar xs
+  | otherwise = x : replaceChar oldChar newChar xs
 
 -- Check if a list is a subsequence of another list
 isSubsequence :: Eq a => [a] -> [a] -> Bool
 isSubsequence [] _ = True
 isSubsequence _ [] = False
-isSubsequence (x:xs) (y:ys)
-  | x == y    = isSubsequence xs ys
-  | otherwise = isSubsequence (x:xs) ys
+isSubsequence (x : xs) (y : ys)
+  | x == y = isSubsequence xs ys
+  | otherwise = isSubsequence (x : xs) ys
 
 -- Generate a list of the first n terms of the hailstone sequence starting from a given number
 hailstoneSequence :: Integer -> Integer -> [Integer]
@@ -231,53 +231,53 @@ hailstoneSequence n x = x : hailstoneSequence (n - 1) (if even x then x `div` 2 
 -- Calculate the product of even numbers in a list
 productOfEvens :: Integral a => [a] -> a
 productOfEvens [] = 1
-productOfEvens (x:xs)
-  | even x    = x * productOfEvens xs
+productOfEvens (x : xs)
+  | even x = x * productOfEvens xs
   | otherwise = productOfEvens xs
 
 -- Remove all occurrences of a character from a string
 removeChar :: Char -> String -> String
 removeChar _ [] = []
-removeChar c (x:xs)
-  | c == x    = removeChar c xs
+removeChar c (x : xs)
+  | c == x = removeChar c xs
   | otherwise = x : removeChar c xs
 
 -- Find the minimum element in a list
 findMinimum :: Ord a => [a] -> a
 findMinimum [x] = x
-findMinimum (x:xs) = min x (findMinimum xs)
+findMinimum (x : xs) = min x (findMinimum xs)
 
 -- Calculate the sum of even-indexed elements in a list
 sumOfEvenIndices :: Num a => [a] -> a
-sumOfEvenIndices xs = sum (map snd (filter (\(i, _) -> even i) (zip [0..] xs)))
+sumOfEvenIndices xs = sum (map snd (filter (\(i, _) -> even i) (zip [0 ..] xs)))
 
 -- Returns the sum from a given number down to 0
-sumdown:: Int -> Int 
+sumdown :: Int -> Int
 sumdown 0 = 0
-sumdown x = x + sumdown (x-1) 
+sumdown x = x + sumdown (x - 1)
 
 -- Returns the exponentiation of a number
 expo :: Int -> Int -> Int
 expo _ 0 = 1
-expo x y = x * expo x (y-1)
+expo x y = x * expo x (y - 1)
 
 -- Calculating the greatest common divisor of two numbers
 euclid :: Int -> Int -> Int
 euclid x y
   | x == y = x
-  | x > y = euclid (x-y) y
-  | x < y = euclid x (y-x)
+  | x > y = euclid (x - y) y
+  | x < y = euclid x (y - x)
 
 -- Returns the length of a list
 length' :: [a] -> Int
 length' [] = 0
-length' (_:xs) = 1 + length' xs
+length' (_ : xs) = 1 + length' xs
 
 -- Merge two sorted lists into a single sorted list
 merge :: Ord a => [a] -> [a] -> [a]
 merge [] ys = ys
 merge xs [] = xs
-merge (x:xs) (y:ys) = if x <= y then x : merge xs (y:ys) else y : merge (x:xs) ys
+merge (x : xs) (y : ys) = if x <= y then x : merge xs (y : ys) else y : merge (x : xs) ys
 
 -- Split a list into two halves (first half is longer if the length is odd)
 halve :: [a] -> ([a], [a])
@@ -288,4 +288,42 @@ mergeSort :: Ord a => [a] -> [a]
 mergeSort [] = []
 mergeSort [x] = [x]
 mergeSort xs = merge (mergeSort left) (mergeSort right)
-  where (left, right) = halve xs
+  where
+    (left, right) = halve xs
+
+--  pow x n = x^n
+pow :: Integer -> Integer -> Integer
+pow 0 _ = 0
+pow _ 0 = 0
+pow x n = x ^ n
+
+-- ascending xs = True if xs is in ascending order.
+-- ascending :: Ord a => [a] -> Bool
+ascending [] = True
+ascending [x] = True
+ascending (x : y : xs)
+  | x < y && ascending (y : xs) = True
+  | otherwise =
+      False
+
+-- Recursive zip
+zip' :: [a] -> [b] -> [(a, b)]
+zip' [] [] = []
+zip' (x : xs) (y : ys) = (x, y) : zip' xs ys
+
+-- Recursive zipWith
+zipWith' :: (a -> b -> c) -> [a] -> [b] -> [c]
+zipWith' _ [] _ = []
+zipWith' _ _ [] = []
+zipWith' f (x : xs) (y : ys) = f x y : zipWith' f xs ys
+
+-- Insertion sort
+insertionSort :: Ord a => [a] -> [a]
+insertionSort [] = []
+insertionSort (x:xs) = insert x (insertionSort xs)
+
+insert :: Ord a => a -> [a] -> [a]
+insert x [] = [x]
+insert x (y:ys)
+  | x <= y    = x : y : ys
+  | otherwise = y : insert x ys
